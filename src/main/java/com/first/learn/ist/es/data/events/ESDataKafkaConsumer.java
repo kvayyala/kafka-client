@@ -66,7 +66,7 @@ public final class ESDataKafkaConsumer {
 				for (final ConsumerRecord<String, String> rec : recs) {
 					if (!esDataMessages.containsKey(rec.topic())) {
 						final List<String> eventMessageList = new ArrayList<>();
-						if (rec.topic().contains("person-bifurcation-error")) {
+						if (rec.topic().contains("fl-bifurcation-error")) {
 							final JSONObject recValue = (JSONObject) parser.parse(new String(rec.value()));
 							recValue.put("dsid", rec.key());
 							recValue.put("timestamp", rec.timestamp());
@@ -76,7 +76,7 @@ public final class ESDataKafkaConsumer {
 						}
 						esDataMessages.put(rec.topic(), eventMessageList);
 					} else {
-						if (rec.topic().contains("person-bifurcation-error")) {
+						if (rec.topic().contains("fl-bifurcation-error")) {
 							final JSONObject recValue = (JSONObject) parser.parse(new String(rec.value()));
 							recValue.put("dsid", rec.key());
 							recValue.put("timestamp", rec.timestamp());
